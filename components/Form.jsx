@@ -1,9 +1,12 @@
-import React from 'react'
 
-const Form = () => {
+import Link from 'next/link'
+
+const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
-    <div>Form</div>
-  )
-}
+    <section className="w-full ">
+ 
+    </section>
+  );
+};
 
-export default Form
+export default Form;
