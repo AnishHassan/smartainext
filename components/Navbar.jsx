@@ -20,7 +20,7 @@ const Navbar = () => {
     return (
         <nav className='flex-between w-full mb-16 pt-3 '>
             <Link href='/' className='flex gap-2 flex-center'>
-                <Image src='/assets/images/logo.svg' alt='SmartText Logo'
+                <Image src='/assets/images/logo_smart.png' alt='SmartText Logo'
                     className='object-contain' width={30} height={30} />
                 <p className='logo_text'>SmartText</p>
             </Link>

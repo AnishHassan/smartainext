@@ -6,7 +6,7 @@ const Home = () => {
       <h1 className="head_text text-center">
         Explore & Share
         <br className="max-md:hidden" />
-        <span className="orange_gradient text-center">AI-Powered Prompts</span>
+        <span className="blue_gradient text-center">AI-Powered Prompts</span>
       </h1>
       <p className="desc text-center">
         SmartText is an open-source AI prompting tool for modern world to
