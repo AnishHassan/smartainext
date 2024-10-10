@@ -16,7 +16,8 @@ const Navbar = () => {
             setProviders(response);
         }
         setUpProviders();
-    }, [])
+    }, []) 
+
     return (
         <nav className='flex-between w-full mb-16 pt-3 '>
             <Link href='/' className='flex gap-2 flex-center'>
@@ -47,7 +48,6 @@ const Navbar = () => {
                 {session?.user ? (<div className='flex'>
                     <Image src={session?.user.image} className='rounded-full'
                         alt='profile' width={37} height={37} onClick={() => setToggleDropdown((prev) => !prev)} />
-
                     {toggleDropdown && (
                         <div className='dropdown'>
                             <Link href='/profile' className='dropdown_link' onClick={() => setToggleDropdown(false)}>
