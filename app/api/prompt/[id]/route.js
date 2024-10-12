@@ -24,7 +24,7 @@ export const PATCH = async (request, { params }) => {
 
   try {
     await connectToDb();
-    const existingPrompt = await Prompt.findById(prompt.id);
+    const existingPrompt = await Prompt.findById(params.id);
 
     if (!existingPrompt)
       return new Response("Prompt not found", { status: 404 });
@@ -44,6 +44,7 @@ export const DELETE = async (request, { params }) => {
   try {
     await connectToDb();
     await Prompt.findByIdAndRemove(params.id);
+
     return new Response("Prompt deleted successfully", { status: 200 });
   } catch (error) {
     return new Response("Failed to delete the Response", { status: 500 });
