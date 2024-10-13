@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@components/Form";
-import { Suspense } from "react";
 
 const UpdatePrompt = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -19,28 +18,30 @@ const UpdatePrompt = () => {
   const promptId = searchParams.get("id");
 
   useEffect(() => {
-    console.log("Prompt ID:", promptId); // Debugging promptId
+    if (promptId) {
+      console.log("Prompt ID:", promptId);
 
-    const getPromptDetails = async () => {
-      try {
-        const response = await fetch(`/api/prompt/${promptId}`);
-        console.log("API response:", response); // Debugging API response
+      const getPromptDetails = async () => {
+        try {
+          const response = await fetch(`/api/prompt/${promptId}`);
+          console.log("API response:", response);
 
-        if (!response.ok) throw new Error("Failed to fetch prompt details");
+          if (!response.ok) throw new Error("Failed to fetch prompt details");
 
-        const data = await response.json();
-        console.log("Fetched data:", data); // Debugging fetched data
+          const data = await response.json();
+          console.log("Fetched data:", data);
 
-        setPost({
-          prompt: data.prompt,
-          tag: data.tag,
-        });
-      } catch (error) {
-        console.error("Error fetching prompt details:", error);
-      }
-    };
+          setPost({
+            prompt: data.prompt,
+            tag: data.tag,
+          });
+        } catch (error) {
+          console.error("Error fetching prompt details:", error);
+        }
+      };
 
-    if (promptId) getPromptDetails();
+      getPromptDetails();
+    }
   }, [promptId]);
 
   const EditPrompt = async (e) => {
@@ -57,7 +58,7 @@ const UpdatePrompt = () => {
       const response = await fetch(`/api/prompt/${promptId}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json", // Added Content-Type header
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           prompt: post.prompt,
@@ -79,15 +80,13 @@ const UpdatePrompt = () => {
   };
 
   return (
-    <Suspense>
-      <Form
-        type="Update"
-        post={post}
-        setPost={setPost}
-        submitting={submitting}
-        handleSubmit={EditPrompt}
-      />
-    </Suspense>
+    <Form
+      type="Update"
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={EditPrompt}
+    />
   );
 };
 
