@@ -19,7 +19,7 @@ const getPaginationRange = (currentPage, totalPages) => {
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className="mt-16 prompt_layout h-full">
+    <div className=" prompt_layout h-full">
       {data.map((post) => (
         <PromptCard
           key={post._id}
@@ -99,11 +99,8 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-
-      <PromptCardList data={paginatedPosts} handleTagClick={() => {}} />
-
       {totalPages > 1 && (
-        <div className="pagination flex justify-center items-center mt-8 space-x-2">
+        <div className="pagination flex justify-center items-center mt-5 space-x-2">
           <button
             className={`pagination_button px-4 py-2 rounded-lg ${
               currentPage === 1
@@ -167,6 +164,8 @@ const Feed = () => {
           </button>
         </div>
       )}
+
+      <PromptCardList data={paginatedPosts} handleTagClick={() => {}} />
     </section>
   );
 };
