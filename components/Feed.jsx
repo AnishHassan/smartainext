@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import PromptCard from "./PromptCard";
+import { useSession } from "next-auth/react";
 
 const getPaginationRange = (currentPage, totalPages) => {
   const delta = 2;
@@ -36,6 +37,7 @@ const Feed = () => {
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
+  const { data: session } = useSession();
 
   const handleSearchChange = (e) => {
     const searchValue = e.target.value.toLowerCase();
@@ -47,7 +49,8 @@ const Feed = () => {
       const filteredSearch = posts.filter(
         (p) =>
           p.prompt.toLowerCase().includes(searchValue) ||
-          p.tag.toLowerCase().includes(searchValue)
+          p.tag.toLowerCase().includes(searchValue) ||
+          p.creator?.username.toLowerCase().includes(searchValue)
       );
       setFilteredPosts(filteredSearch);
     }
