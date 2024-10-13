@@ -1,6 +1,7 @@
 import Navbar from '@components/Navbar'
 import '@styles/global.css'
 import Provider from '@components/Provider'
+import Footer from '@components/Footer'
 
 export const metadata = {
   title: 'SmartAppAI',
@@ -19,6 +20,7 @@ const Rootlayout = ({ children }) => {
           <main className='app'>
             <Navbar />
             {children}
+            <Footer/>
           </main>
         </Provider>
       </body>
