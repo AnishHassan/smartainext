@@ -18,7 +18,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   };
 
   return (
-    <div className="prompt_card">
+    <div className="prompt_card flex flex-col justify-between h-full">
       <div className="flex justify-between gap-5 items-start">
         <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
           <Image
@@ -47,10 +47,11 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
             }
             width={12}
             height={12}
+            alt='action-btn'
           />
         </div>
       </div>
-      <p className="my-4 font-staoshi text-sm text-gray-700">{post.prompt}</p>
+      <p className="my-4 font-staoshi text-sm text-gray-700  flex-grow">{post.prompt}</p>
       <p
         className="font-inter text-sm blue_gradient cursor_pointer"
         onClick={() => handleClick && handleTagClick(post.tag)}

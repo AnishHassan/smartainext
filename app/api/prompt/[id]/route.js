@@ -43,7 +43,13 @@ export const PATCH = async (request, { params }) => {
 export const DELETE = async (request, { params }) => {
   try {
     await connectToDb();
-    await Prompt.findByIdAndRemove(params.id);
+
+    const prompt = await Prompt.findById(params.id);
+    if (!prompt) {
+        return new Response("Prompt not found", { status: 404 });
+      }
+
+      await Prompt.findByIdAndDelete(params.id);
 
     return new Response("Prompt deleted successfully", { status: 200 });
   } catch (error) {
