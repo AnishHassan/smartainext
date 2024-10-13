@@ -13,6 +13,6 @@ try {
     });
 
 } catch (error) {
-    return Response('Failed to fetch the prompts',{status:500})
+    return new Response('Failed to fetch the prompts',{status:500})
 }
 }

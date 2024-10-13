@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from "@components/Form";
+import { Suspense } from "react";
 
 const UpdatePrompt = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -21,7 +22,6 @@ const UpdatePrompt = () => {
     console.log("Prompt ID:", promptId); // Debugging promptId
 
     const getPromptDetails = async () => {
-
       try {
         const response = await fetch(`/api/prompt/${promptId}`);
         console.log("API response:", response); // Debugging API response
@@ -57,7 +57,7 @@ const UpdatePrompt = () => {
       const response = await fetch(`/api/prompt/${promptId}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",  // Added Content-Type header
+          "Content-Type": "application/json", // Added Content-Type header
         },
         body: JSON.stringify({
           prompt: post.prompt,
@@ -79,13 +79,15 @@ const UpdatePrompt = () => {
   };
 
   return (
-    <Form
-      type="Update"
-      post={post}
-      setPost={setPost}
-      submitting={submitting}
-      handleSubmit={EditPrompt}
-    />
+    <Suspense>
+      <Form
+        type="Update"
+        post={post}
+        setPost={setPost}
+        submitting={submitting}
+        handleSubmit={EditPrompt}
+      />
+    </Suspense>
   );
 };
 
